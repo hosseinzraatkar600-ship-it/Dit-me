@@ -1,0 +1,42 @@
+body{
+    margin:0;
+    padding:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+    background:#1b1b1b;
+    padding:30px;
+    border-radius:20px;
+    border:2px solid hotpink;
+}
+
+h1{
+    color:hotpink;
+}
+
+button{
+    padding:15px 30px;
+    margin:10px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#yesBtn{
+    background:hotpink;
+    color:white;
+}
+
+#noBtn{
+    background:#444;
+    color:white;
+}
