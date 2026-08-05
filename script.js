@@ -52,7 +52,7 @@ yesBtn.onclick = function(){
 };
 
 
-sendBtn.onclick = function(){
+sendBtn.onclick = async function(){
 
   let day = document.getElementById("day").value;
   let time = document.getElementById("time").value;
@@ -61,21 +61,13 @@ sendBtn.onclick = function(){
 
   if(day && time){
 
+    await saveDate(day, time, place);
+
     formBox.innerHTML =
     `
-    <h2>
-    Okay, see you then 💕
-    </h2>
-    <p>
-    I'm happy about it 😊
-    </p>
+    <h2>Okay, see you then 💕</h2>
+    <p>I'm happy about it 😊</p>
     `;
-
-    console.log({
-      day,
-      time,
-      place
-    });
 
   } else {
 
@@ -84,22 +76,3 @@ sendBtn.onclick = function(){
   }
 
 };
-
-const SUPABASE_URL = "https://ptvqpivedouplngalhub.supabase.co";
-const SUPABASE_KEY = "sb_publishable_P21a6YFO67lZIDIjAPiAYw_YWTMoI62";
-
-async function saveDate(day, time, place) {
-  await fetch(`${SUPABASE_URL}/rest/v1/date_answers`, {
-    method: "POST",
-    headers: {
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      day: day,
-      time: time,
-      place: place
-    })
-  });
-}
