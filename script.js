@@ -16,12 +16,11 @@ const messages = [
 
 let count = 0;
 
-
-noBtn.onclick = function(){
+noBtn.onclick = function () {
 
   count++;
 
-  if(count < messages.length){
+  if (count < messages.length) {
     funText.innerHTML = messages[count];
   }
 
@@ -29,43 +28,39 @@ noBtn.onclick = function(){
   yesBtn.style.transform = `scale(${size})`;
 
   noBtn.style.transform =
-  `scale(${Math.max(0.3, 1 - count*0.15)})`;
+    `scale(${Math.max(0.3, 1 - count * 0.15)})`;
 
-  if(count >= 5){
+  if (count >= 5) {
     noBtn.style.display = "none";
     funText.innerHTML = "Okay you have to say YES now 😂❤️";
   }
 
 };
 
+yesBtn.onclick = function () {
 
-yesBtn.onclick = function(){
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
 
-  document.querySelector("#yesBtn").style.display="none";
-  document.querySelector("#noBtn").style.display="none";
+  funText.innerHTML = "Yay! Let's plan it 💕";
 
-  funText.innerHTML =
-  "Yay! Let's plan it 💕";
-
-  formBox.style.display="block";
+  formBox.style.display = "block";
 
 };
 
-sendBtn.onclick = async function(){
+sendBtn.onclick = async function () {
 
-  let day = document.getElementById("day").value;
-  let time = document.getElementById("time").value;
-  let place = document.getElementById("place").value;
+  const day = document.getElementById("day").value;
+  const time = document.getElementById("time").value;
+  const place = document.getElementById("place").value;
 
-
-  if(day && time){
+  if (day && time) {
 
     await saveDate(day, time, place);
 
-    formBox.innerHTML =
-    `
-    <h2>Okay, see you then 💕</h2>
-    <p>I'm happy about it 😊</p>
+    formBox.innerHTML = `
+      <h2>Okay, see you then 💕</h2>
+      <p>I'm happy about it 😊</p>
     `;
 
   } else {
@@ -74,16 +69,14 @@ sendBtn.onclick = async function(){
 
   }
 
-}
-  
+};
+
 const SUPABASE_URL = "https://ptvqpivedouplngalhub.supabase.co";
-
 const SUPABASE_KEY = "sb_publishable_P21a6YFO67lZIDIjAPiAYw_YWTMoI62";
-
 
 async function saveDate(day, time, place) {
 
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/date_answers`, {
+  await fetch(`${SUPABASE_URL}/rest/v1/date_answers`, {
     method: "POST",
     headers: {
       "apikey": SUPABASE_KEY,
@@ -96,8 +89,5 @@ async function saveDate(day, time, place) {
       place: place
     })
   });
-
-  const text = await response.text();
-  alert("Status: " + response.status + "\n\n" + text);
 
 }
