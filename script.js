@@ -97,9 +97,7 @@ async function saveDate(day, time, place) {
     })
   });
 
-  console.log("Status:", response.status);
-
-  const result = await response.text();
-  console.log(result);
+  const text = await response.text();
+  alert("Status: " + response.status + "\n\n" + text);
 
 }
