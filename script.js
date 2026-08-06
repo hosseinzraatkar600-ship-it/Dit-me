@@ -83,7 +83,7 @@ const SUPABASE_KEY = "sb_publishable_P21a6YFO67lZIDIjAPiAYw_YWTMoI62";
 
 async function saveDate(day, time, place) {
 
-  await fetch(`${SUPABASE_URL}/rest/v1/date_answers`, {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/date_answers`, {
     method: "POST",
     headers: {
       "apikey": SUPABASE_KEY,
@@ -96,5 +96,10 @@ async function saveDate(day, time, place) {
       place: place
     })
   });
+
+  console.log("Status:", response.status);
+
+  const result = await response.text();
+  console.log(result);
 
 }
